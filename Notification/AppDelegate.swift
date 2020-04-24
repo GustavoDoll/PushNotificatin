@@ -9,30 +9,63 @@
 import UIKit
 import FirebaseMessaging
 import Firebase
+import AcousticMobilePush
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    let gcmMessageIDKey = "gcm.message_id"
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        if #available(iOS 10.0, *) {
-          // For iOS 10 display notification (sent via APNS)
-          UNUserNotificationCenter.current().delegate = self
-
-          let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-          UNUserNotificationCenter.current().requestAuthorization(
-            options: authOptions,
-            completionHandler: {_, _ in })
-        } else {
-          let settings: UIUserNotificationSettings =
-          UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-          application.registerUserNotificationSettings(settings)
-        }
+        configureNotifications(application)
         application.registerForRemoteNotifications()
         FirebaseApp.configure()
+        MCESdk.shared.handleApplicationLaunch()
         return true
     }
+    private func configureNotifications(_ application: UIApplication) {
+           UNUserNotificationCenter.current().delegate = self
+           let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+           UNUserNotificationCenter.current().requestAuthorization(
+               options: authOptions,
+               completionHandler: {_, _ in })
+           inboxUpdate()
+           NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.inboxUpdate), name:
+               MCENotificationName.InboxCountUpdate.rawValue, object: nil)
+
+           // This can be used to not present push notifications while app is running
+           MCESdk.shared.presentNotification = {(userInfo) -> Bool in
+               return true
+           }
+           application.registerForRemoteNotifications()
+           UserDefaults.standard.register(defaults: ["action":"update", "standardType":"dial",  "standardDialValue":"\"8774266006\"",  "standardUrlValue":"\"http://acoustic.co\"",  "customType":"sendEmail",  "customValue":"{\"subject\":\"Hello from Sample App\",  \"body\": \"This is an example email body\",  \"recipient\":\"fake-email@fake-site.com\"}",  "categoryId":"example", "button1":"Accept", "button2":"Reject"])
+           let options: UNAuthorizationOptions = {
+               if #available(iOS 12.0, *) {
+                   return [.alert, .sound, .carPlay, .badge, .providesAppNotificationSettings]
+               }
+               return [.alert, .sound, .carPlay, .badge]
+           }()
+
+           let center = UNUserNotificationCenter.current()
+           center.requestAuthorization(options: options, completionHandler: { (granted, error) in
+               if let error = error {
+                   print("Could not request authorization from APNS \(error.localizedDescription)")
+               }
+               center.setNotificationCategories( self.notificationCategories() )
+           })
+       }
+    @objc func inboxUpdate() {
+            DispatchQueue.main.async {
+                UIApplication.shared.applicationIconBadgeNumber = Int(MCEInboxDatabase.shared.unreadMessageCount())
+            }
+        }
+    func notificationCategories() -> Set<UNNotificationCategory> {
+         // iOS 10+ Example static action category:
+         let acceptAction = UNNotificationAction(identifier: "Accept", title: "Accept", options: [.foreground])
+         let rejectAction = UNNotificationAction(identifier: "Reject", title: "Reject", options: [.destructive])
+         let category = UNNotificationCategory(identifier: "example", actions: [acceptAction, rejectAction], intentIdentifiers: [], options: [.customDismissAction])
+
+         return Set(arrayLiteral: category)
+     }
 
     // MARK: UISceneSession Lifecycle
 
@@ -73,5 +106,6 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     // THIS METHOD IS THE ONE HOW MAKE THIS WORK PERFECT !!!!!!
     completionHandler()
   }
+
 }
 

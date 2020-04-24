@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,7 +16,25 @@
 		7F982FCD2449DBDC008E5DA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F982FCB2449DBDC008E5DA4 /* LaunchScreen.storyboard */; };
 		7F982FD52449DCA5008E5DA4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7F982FD42449DCA5008E5DA4 /* GoogleService-Info.plist */; };
 		7FD24D1D24534E8000A7B3BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FD24D1C24534E8000A7B3BF /* GoogleService-Info.plist */; };
+		7FD24D232453562100A7B3BF /* MceConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 7FD24D222453562100A7B3BF /* MceConfig.json */; };
+		7FD24D342453590900A7B3BF /* AcousticMobilePush.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7FD24D332453590900A7B3BF /* AcousticMobilePush.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		7FD24D362453591300A7B3BF /* AcousticMobilePushNotification.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7FD24D352453591300A7B3BF /* AcousticMobilePushNotification.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7FD24D32245358E100A7B3BF /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7FD24D362453591300A7B3BF /* AcousticMobilePushNotification.xcframework in Embed Frameworks */,
+				7FD24D342453590900A7B3BF /* AcousticMobilePush.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		7F982FBD2449DBDA008E5DA4 /* Notification.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notification.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -30,6 +48,13 @@
 		7F982FD42449DCA5008E5DA4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7F982FD62449DD45008E5DA4 /* Notification.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Notification.entitlements; sourceTree = "<group>"; };
 		7FD24D1C24534E8000A7B3BF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7FD24D222453562100A7B3BF /* MceConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MceConfig.json; sourceTree = "<group>"; };
+		7FD24D28245357CC00A7B3BF /* AcousticMobilePush.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = AcousticMobilePush.xcframework; sourceTree = "<group>"; };
+		7FD24D2A245357D400A7B3BF /* AcousticMobilePushNotification.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = AcousticMobilePushNotification.xcframework; sourceTree = "<group>"; };
+		7FD24D2E2453588700A7B3BF /* AcousticMobilePush.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AcousticMobilePush.xcframework; path = Notification/AcousticMobilePush.xcframework; sourceTree = "<group>"; };
+		7FD24D302453589100A7B3BF /* AcousticMobilePushNotification.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AcousticMobilePushNotification.xcframework; path = Notification/AcousticMobilePushNotification.xcframework; sourceTree = "<group>"; };
+		7FD24D332453590900A7B3BF /* AcousticMobilePush.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AcousticMobilePush.xcframework; path = Notification/AcousticMobilePush.xcframework; sourceTree = "<group>"; };
+		7FD24D352453591300A7B3BF /* AcousticMobilePushNotification.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AcousticMobilePushNotification.xcframework; path = Notification/AcousticMobilePushNotification.xcframework; sourceTree = "<group>"; };
 		F0C62C441F1A7361B6E24AC0 /* Pods_Notification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Notification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F45C76A75D93EB13EFCD90F8 /* Pods-Notification.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Notification.debug.xcconfig"; path = "Target Support Files/Pods-Notification/Pods-Notification.debug.xcconfig"; sourceTree = "<group>"; };
 		F48B82317EDE2D38CD4D09E2 /* Pods-Notification.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Notification.release.xcconfig"; path = "Target Support Files/Pods-Notification/Pods-Notification.release.xcconfig"; sourceTree = "<group>"; };
@@ -50,6 +75,8 @@
 		7F982FB42449DBDA008E5DA4 = {
 			isa = PBXGroup;
 			children = (
+				7FD24D352453591300A7B3BF /* AcousticMobilePushNotification.xcframework */,
+				7FD24D332453590900A7B3BF /* AcousticMobilePush.xcframework */,
 				7F982FBF2449DBDA008E5DA4 /* Notification */,
 				7F982FBE2449DBDA008E5DA4 /* Products */,
 				C024A83AEFEA01EF99531095 /* Pods */,
@@ -69,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				7F982FD62449DD45008E5DA4 /* Notification.entitlements */,
+				7FD24D222453562100A7B3BF /* MceConfig.json */,
 				7FD24D1C24534E8000A7B3BF /* GoogleService-Info.plist */,
 				7F982FC02449DBDA008E5DA4 /* AppDelegate.swift */,
 				7F982FC22449DBDA008E5DA4 /* SceneDelegate.swift */,
@@ -85,6 +113,10 @@
 		92B0FB8856DDE541855CC687 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7FD24D302453589100A7B3BF /* AcousticMobilePushNotification.xcframework */,
+				7FD24D2E2453588700A7B3BF /* AcousticMobilePush.xcframework */,
+				7FD24D2A245357D400A7B3BF /* AcousticMobilePushNotification.xcframework */,
+				7FD24D28245357CC00A7B3BF /* AcousticMobilePush.xcframework */,
 				F0C62C441F1A7361B6E24AC0 /* Pods_Notification.framework */,
 			);
 			name = Frameworks;
@@ -111,6 +143,7 @@
 				7F982FBA2449DBDA008E5DA4 /* Frameworks */,
 				7F982FBB2449DBDA008E5DA4 /* Resources */,
 				8715BB824A7315C4B689DAB0 /* [CP] Embed Pods Frameworks */,
+				7FD24D32245358E100A7B3BF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -162,6 +195,7 @@
 				7F982FCD2449DBDC008E5DA4 /* LaunchScreen.storyboard in Resources */,
 				7F982FD52449DCA5008E5DA4 /* GoogleService-Info.plist in Resources */,
 				7FD24D1D24534E8000A7B3BF /* GoogleService-Info.plist in Resources */,
+				7FD24D232453562100A7B3BF /* MceConfig.json in Resources */,
 				7F982FCA2449DBDC008E5DA4 /* Assets.xcassets in Resources */,
 				7F982FC82449DBDA008E5DA4 /* Main.storyboard in Resources */,
 			);
